@@ -1,0 +1,156 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "title": "The Witcher 3: Wild Hunt",
+      "genre": ["RPG", "Action"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo"],
+      "price": 29.99,
+      "rating": 4.9,
+      "cover": "https://via.placeholder.com/300x400/1a1a2e/ffffff?text=The+Witcher+3",
+      "description": "The Witcher 3: Wild Hunt is a story-driven open world RPG set in a visually stunning fantasy universe full of meaningful choices and impactful consequences.",
+      "systemRequirements": {
+        "os": "64-bit Windows 7, 64-bit Windows 8 (8.1) or 64-bit Windows 10",
+        "processor": "Intel CPU Core i5-2500K 3.3GHz / AMD CPU Phenom II X4 940",
+        "memory": "6 GB RAM",
+        "graphics": "Nvidia GPU GeForce GTX 660 / AMD GPU Radeon HD 7870",
+        "storage": "35 GB available space"
+      },
+      "releaseDate": "2015-05-19",
+      "developer": "CD Projekt Red"
+    },
+    {
+      "id": 2,
+      "title": "Red Dead Redemption 2",
+      "genre": ["Action", "Adventure"],
+      "platforms": ["PC", "PlayStation", "Xbox"],
+      "price": 59.99,
+      "rating": 4.8,
+      "cover": "https://via.placeholder.com/300x400/2d1a1a/ffffff?text=RDR2",
+      "description": "Winner of over 175 Game of the Year Awards and recipient of over 250 perfect scores, RDR2 is an epic tale of outlaw life in America.",
+      "systemRequirements": {
+        "os": "Windows 10 - April 2018 Update (v1803)",
+        "processor": "Intel Core i7-4770K / AMD Ryzen 5 1500X",
+        "memory": "12 GB RAM",
+        "graphics": "Nvidia GeForce GTX 1060 6GB / AMD Radeon RX 480 4GB",
+        "storage": "150 GB available space"
+      },
+      "releaseDate": "2018-10-26",
+      "developer": "Rockstar Games"
+    },
+    {
+      "id": 3,
+      "title": "Civilization VI",
+      "genre": ["Strategy", "Simulation"],
+      "platforms": ["PC", "Nintendo", "PlayStation", "Xbox"],
+      "price": 39.99,
+      "rating": 4.6,
+      "cover": "https://via.placeholder.com/300x400/1a2d1a/ffffff?text=Civ+VI",
+      "description": "Civilization VI is the newest installment in the award-winning Civilization franchise. Expand your empire across the map, advance your culture, and compete against history's greatest leaders.",
+      "systemRequirements": {
+        "os": "Windows 7x64 / Windows 8.1x64 / Windows 10x64",
+        "processor": "Intel Core i3 2.5 Ghz or AMD Phenom II 2.6 Ghz or greater",
+        "memory": "4 GB RAM",
+        "graphics": "1 GB & AMD 5570 or nVidia 450 or Intel Integrated Graphics 530",
+        "storage": "12 GB available space"
+      },
+      "releaseDate": "2016-10-21",
+      "developer": "Firaxis Games"
+    },
+    {
+      "id": 4,
+      "title": "The Sims 4",
+      "genre": ["Simulation"],
+      "platforms": ["PC", "PlayStation", "Xbox"],
+      "price": 19.99,
+      "rating": 4.3,
+      "cover": "https://via.placeholder.com/300x400/1a1a3d/ffffff?text=Sims+4",
+      "description": "Enjoy the power to create and control people in a virtual world where there are no rules. Express your creativity as you customize your Sims' appearances and personalities.",
+      "systemRequirements": {
+        "os": "64 Bit Required. Windows 7 (SP1), Windows 8, Windows 8.1, or Windows 10",
+        "processor": "1.8 GHz Intel Core 2 Duo, AMD Athlon 64 Dual-Core 4000+ or equivalent",
+        "memory": "4 GB RAM",
+        "graphics": "128 MB of Video RAM and support for Pixel Shader 3.0",
+        "storage": "17 GB available space"
+      },
+      "releaseDate": "2014-09-02",
+      "developer": "Maxis"
+    },
+    {
+      "id": 5,
+      "title": "Elden Ring",
+      "genre": ["RPG", "Action"],
+      "platforms": ["PC", "PlayStation", "Xbox"],
+      "price": 59.99,
+      "rating": 4.9,
+      "cover": "https://via.placeholder.com/300x400/3d2a1a/ffffff?text=Elden+Ring",
+      "description": "THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.",
+      "systemRequirements": {
+        "os": "Windows 10",
+        "processor": "INTEL CORE I5-8400 or AMD RYZEN 3 3300X",
+        "memory": "12 GB RAM",
+        "graphics": "NVIDIA GEFORCE GTX 1060 3 GB or AMD RADEON RX 580 4 GB",
+        "storage": "60 GB available space"
+      },
+      "releaseDate": "2022-02-25",
+      "developer": "FromSoftware"
+    },
+    {
+      "id": 6,
+      "title": "Minecraft",
+      "genre": ["Adventure", "Simulation"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo"],
+      "price": 26.95,
+      "rating": 4.7,
+      "cover": "https://via.placeholder.com/300x400/2d3d1a/ffffff?text=Minecraft",
+      "description": "Minecraft is a game about placing blocks and going on adventures. Explore randomly generated worlds and build amazing things from the simplest of homes to the grandest of castles.",
+      "systemRequirements": {
+        "os": "Windows 7 and up",
+        "processor": "Intel Core i3-3210 3.2 GHz / AMD A8-7600 APU 3.1 GHz or equivalent",
+        "memory": "4 GB RAM",
+        "graphics": "Intel HD Graphics 4000 or AMD Radeon R5 series",
+        "storage": "1 GB available space"
+      },
+      "releaseDate": "2011-11-18",
+      "developer": "Mojang"
+    },
+    {
+      "id": 7,
+      "title": "God of War",
+      "genre": ["Action", "Adventure"],
+      "platforms": ["PC", "PlayStation"],
+      "price": 49.99,
+      "rating": 4.8,
+      "cover": "https://via.placeholder.com/300x400/4a1a2d/ffffff?text=God+of+War",
+      "description": "His vengeance against the Gods of Olympus years behind him, Kratos now lives as a man in the realm of Norse Gods and monsters.",
+      "systemRequirements": {
+        "os": "Windows 10 64-bit",
+        "processor": "Intel i5-2500k (4 core 3.3 GHz) or AMD Ryzen 3 1200 (4 core 3.1 GHz)",
+        "memory": "8 GB RAM",
+        "graphics": "NVIDIA GTX 960 (4 GB) or AMD R9 290X (4 GB)",
+        "storage": "70 GB available space"
+      },
+      "releaseDate": "2018-04-20",
+      "developer": "Santa Monica Studio"
+    },
+    {
+      "id": 8,
+      "title": "Stardew Valley",
+      "genre": ["Simulation", "RPG"],
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo"],
+      "price": 14.99,
+      "rating": 4.8,
+      "cover": "https://via.placeholder.com/300x400/1a3d2d/ffffff?text=Stardew+Valley",
+      "description": "You've inherited your grandfather's old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life.",
+      "systemRequirements": {
+        "os": "Windows Vista or greater",
+        "processor": "2 Ghz",
+        "memory": "2 GB RAM",
+        "graphics": "256 mb video memory, shader model 3.0+",
+        "storage": "500 MB available space"
+      },
+      "releaseDate": "2016-02-26",
+      "developer": "ConcernedApe"
+    }
+  ]
+}

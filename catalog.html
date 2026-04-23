@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStore - Каталог смартфонов</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Боковая панель для десктопа -->
+    <aside class="sidebar desktop-only">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-mobile-alt"></i>
+                <span>SmartStore</span>
+            </div>
+            <div class="text-muted text-sm mt-2">Магазин смартфонов</div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="sidebar-item">
+                <i class="fas fa-home"></i>
+                <span>Главная</span>
+            </a>
+            <a href="catalog.html" class="sidebar-item active">
+                <i class="fas fa-th-large"></i>
+                <span>Каталог</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fas fa-fire"></i>
+                <span>Новинки</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fas fa-percent"></i>
+                <span>Акции</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fas fa-star"></i>
+                <span>Топ продаж</span>
+            </a>
+            <div class="sidebar-nav-section mt-5">
+                <div class="sidebar-section-title text-muted text-sm mb-3">Мой аккаунт</div>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Избранное</span>
+                </a>
+                <a href="#" class="sidebar-item" data-modal="cartModal">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Корзина</span>
+                    <span class="cart-badge ml-auto">0</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-history"></i>
+                    <span>История заказов</span>
+                </a>
+                <div class="sidebar-item" onclick="logoutUser()" style="cursor: pointer; color: var(--danger);">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выйти</span>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Верхняя панель для десктопа -->
+    <header class="top-bar desktop-only">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Поиск смартфонов..." id="searchInput" onkeyup="searchProducts()">
+        </div>
+        <div class="user-menu">
+            <div class="cart-icon" data-modal="cartModal">
+                <i class="fas fa-shopping-cart fa-lg"></i>
+                <span class="cart-badge">0</span>
+            </div>
+            <div class="notifications">
+                <i class="fas fa-bell fa-lg"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="auth-button btn btn-outline">
+                <i class="fas fa-sign-in-alt"></i>
+                Войти
+            </div>
+        </div>
+    </header>
+
+    <!-- Мобильная шапка -->
+    <header class="mobile-header mobile-only">
+        <button class="btn btn-icon" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+            <i class="fas fa-mobile-alt"></i>
+            <span>Каталог</span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <div class="cart-icon" data-modal="cartModal">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+            </div>
+            <button class="menu-toggle" onclick="toggleMobileFilters()">
+                <i class="fas fa-filter"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Мобильное меню -->
+    <div id="mobileMenu" class="mobile-menu mobile-only">
+        <div class="mobile-menu-header">
+            <div class="user-info mb-4"></div>
+            <div class="auth-button btn btn-primary btn-full mb-3">
+                <i class="fas fa-sign-in-alt"></i>
+                Войти
+            </div>
+        </div>
+        <nav class="mobile-menu-nav">
+            <a href="index.html" class="mobile-menu-item">
+                <i class="fas fa-home"></i>
+                <span>Главная</span>
+            </a>
+            <a href="catalog.html" class="mobile-menu-item active">
+                <i class="fas fa-th-large"></i>
+                <span>Каталог</span>
+            </a>
+            <a href="#" class="mobile-menu-item">
+                <i class="fas fa-fire"></i>
+                <span>Новинки</span>
+            </a>
+            <a href="#" class="mobile-menu-item">
+                <i class="fas fa-percent"></i>
+                <span>Акции</span>
+            </a>
+            <a href="#" class="mobile-menu-item">
+                <i class="fas fa-heart"></i>
+                <span>Избранное</span>
+            </a>
+            <a href="#" class="mobile-menu-item">
+                <i class="fas fa-history"></i>
+                <span>История</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Мобильные фильтры -->
+    <div id="mobileFilters" class="mobile-filters mobile-only">
+        <div class="mobile-filters-header">
+            <h3>Фильтры</h3>
+            <button class="btn btn-icon" onclick="toggleMobileFilters()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-filters-content">
+            <!-- Фильтры будут вставлены через JS -->
+        </div>
+        <div class="mobile-filters-footer">
+            <button class="btn btn-secondary btn-full" onclick="resetFilters()">
+                Сбросить фильтры
+            </button>
+            <button class="btn btn-primary btn-full" onclick="toggleMobileFilters()">
+                Применить
+            </button>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Хлебные крошки -->
+            <nav class="breadcrumbs mb-4">
+                <a href="index.html">Главная</a>
+                <i class="fas fa-chevron-right mx-2 text-muted"></i>
+                <span>Каталог смартфонов</span>
+            </nav>
+
+            <!-- Заголовок -->
+            <div class="catalog-header mb-5">
+                <h1 class="page-title">Каталог смартфонов</h1>
+                <p class="text-muted">Более 1000 моделей от ведущих брендов</p>
+            </div>
+
+            <div class="catalog-container">
+                <!-- Боковая панель с фильтрами (десктоп) -->
+                <aside class="filter-sidebar desktop-only">
+                    <div class="filter-header mb-4">
+                        <h3 class="filter-title">Фильтры</h3>
+                        <button class="btn btn-sm btn-text" onclick="resetFilters()">
+                            Сбросить все
+                        </button>
+                    </div>
+
+                    <!-- Категории -->
+                    <div class="filter-group">
+                        <h4 class="filter-title">Категории</h4>
+                        <ul class="filter-list" id="categoryFilter">
+                            <!-- Загружается через JS -->
+                        </ul>
+                    </div>
+
+                    <!-- Бренды -->
+                    <div class="filter-group">
+                        <h4 class="filter-title">Бренды</h4>
+                        <ul class="filter-list" id="brandFilter">
+                            <!-- Загружается через JS -->
+                        </ul>
+                    </div>
+
+                    <!-- Цена -->
+                    <div class="filter-group">
+                        <h4 class="filter-title">Цена</h4>
+                        <ul class="filter-list" id="priceFilter">
+                            <!-- Загружается через JS -->
+                        </ul>
+                        <div class="price-range mt-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span id="minPrice">0 ₽</span>
+                                <span id="maxPrice">200 000 ₽</span>
+                            </div>
+                            <input type="range" class="price-slider" min="0" max="200000" value="0" id="priceMin">
+                            <input type="range" class="price-slider" min="0" max="200000" value="200000" id="priceMax">
+                        </div>
+                    </div>
+
+                    <!-- RAM -->
+                    <div class="filter-group">
+                        <h4 class="filter-title">Оперативная память</h4>
+                        <ul class="filter-list" id="ramFilter">
+                            <li class="filter-item" data-filter="ram" data-value="4">
+                                <div class="filter-checkbox"></div>
+                                <span>4 ГБ</span>
+                            </li>
+                            <li class="filter-item" data-filter="ram" data-value="6">
+                                <div class="filter-checkbox"></div>
+                                <span>6 ГБ</span>
+                            </li>
+                            <li class="filter-item" data-filter="ram" data-value="8">
+                                <div class="filter-checkbox"></div>
+                                <span>8 ГБ</span>
+                            </li>
+                            <li class="filter-item" data-filter="ram" data-value="12">
+                                <div class="filter-checkbox"></div>
+                                <span>12 ГБ</span>
+                            </li>
+                            <li class="filter-item" data-filter="ram" data-value="16">
+                                <div class="filter-checkbox"></div>
+                                <span>16 ГБ</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Память -->
+                    <div class="filter-group">
+                        <h4 class="filter-title">Встроенная память</h4>
+                        <ul class="filter-list" id="storageFilter">
+                            <li class="filter-item" data-filter="storage" data-value="64">
+                                <div class="filter-checkbox"></div>
+                                <span>64 ГБ</span>
+                            </li>
+                            <li class="filter-item" data-filter="storage" data-value="128">
+                                <div class="filter-checkbox"></div>
+                                <span>128 ГБ</span>
+                            </li>
+                            <li class="filter-item" data-filter="storage" data-value="256">
+                                <div class="filter-checkbox"></div>
+                                <span>256 ГБ</span>
+                            </li>
+                            <li class="filter-item" data-filter="storage" data-value="512">
+                                <div class="filter-checkbox"></div>
+                                <span>512 ГБ</span>
+                            </li>
+                            <li class="filter-item" data-filter="storage" data-value="1024">
+                                <div class="filter-checkbox"></div>
+                                <span>1 ТБ</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Аккумулятор -->
+                    <div class="filter-group">
+                        <h4 class="filter-title">Аккумулятор</h4>
+                        <ul class="filter-list" id="batteryFilter">
+                            <li class="filter-item" data-filter="battery" data-value="4000">
+                                <div class="filter-checkbox"></div>
+                                <span>До 4000 мАч</span>
+                            </li>
+                            <li class="filter-item" data-filter="battery" data-value="5000">
+                                <div class="filter-checkbox"></div>
+                                <span>4000-5000 мАч</span>
+                            </li>
+                            <li class="filter-item" data-filter="battery" data-value="6000">
+                                <div class="filter-checkbox"></div>
+                                <span>Более 5000 мАч</span>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Основная область с товарами -->
+                <div class="catalog-main">
+                    <!-- Панель управления каталогом -->
+                    <div class="catalog-controls mb-4">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div class="catalog-info">
+                                <span id="productsCount">6</span> товаров
+                            </div>
+                            <div class="catalog-sort">
+                                <select class="form-control" id="sortSelect" onchange="sortProducts()">
+                                    <option value="default">По умолчанию</option>
+                                    <option value="price_asc">По возрастанию цены</option>
+                                    <option value="price_desc">По убыванию цены</option>
+                                    <option value="rating">По рейтингу</option>
+                                    <option value="newest">Сначала новинки</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Мобильные фильтры кнопка -->
+                    <div class="mobile-only mb-4">
+                        <button class="btn btn-secondary btn-full" onclick="toggleMobileFilters()">
+                            <i class="fas fa-filter"></i>
+                            Фильтры и сортировка
+                        </button>
+                    </div>
+
+                    <!-- Сетка товаров -->
+                    <div id="productsContainer" class="product-grid">
+                        <!-- Товары загружаются через JavaScript -->
+                    </div>
+
+                    <!-- Пагинация -->
+                    <div class="pagination mt-5">
+                        <nav aria-label="Навигация по страницам">
+                            <ul class="pagination-list">
+                                <li class="pagination-item disabled">
+                                    <a href="#" class="pagination-link">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </a>
+                                </li>
+                                <li class="pagination-item active">
+                                    <a href="#" class="pagination-link">1</a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="#" class="pagination-link">2</a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="#" class="pagination-link">3</a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="#" class="pagination-link">4</a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="#" class="pagination-link">5</a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="#" class="pagination-link">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Информационный блок -->
+                    <div class="catalog-info-card card mt-5">
+                        <h3 class="mb-3">Как выбрать смартфон?</h3>
+                        <div class="grid grid-3">
+                            <div>
+                                <i class="fas fa-microchip fa-2x mb-3" style="color: var(--primary);"></i>
+                                <h4>Процессор</h4>
+                                <p class="text-muted">Обратите внимание на производительность процессора</p>
+                            </div>
+                            <div>
+                                <i class="fas fa-camera fa-2x mb-3" style="color: var(--accent);"></i>
+                                <h4>Камера</h4>
+                                <p class="text-muted">Качество фото и видео зависит от матрицы камеры</p>
+                            </div>
+                            <div>
+                                <i class="fas fa-battery-full fa-2x mb-3" style="color: var(--warning);"></i>
+                                <h4>Батарея</h4>
+                                <p class="text-muted">Емкость аккумулятора важна для автономной работы</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SmartStore</h4>
+                    <p class="text-muted">Магазин смартфонов с лучшими ценами и сервисом.</p>
+                    <div class="social-links mt-4">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Категории</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">iPhone</a></li>
+                        <li><a href="#">Samsung</a></li>
+                        <li><a href="#">Xiaomi</a></li>
+                        <li><a href="#">Huawei</a></li>
+                        <li><a href="#">Google Pixel</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Помощь</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Гарантия</a></li>
+                        <li><a href="#">Возврат товара</a></li>
+                        <li><a href="#">Частые вопросы</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone mr-2"></i> 8 (800) 555-35-35</li>
+                        <li><i class="fas fa-envelope mr-2"></i> info@smartstore.ru</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Москва, ул. Примерная, 123</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2024</span> SmartStore. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальные окна (общие) -->
+    <div id="authModal" class="modal">
+        <!-- Содержимое такое же как в index.html -->
+    </div>
+
+    <div id="cartModal" class="modal">
+        <!-- Содержимое такое же как в index.html -->
+    </div>
+
+    <!-- Мобильная навигация -->
+    <nav class="bottom-nav mobile-only">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Главная</span>
+        </a>
+        <a href="catalog.html" class="nav-item active">
+            <i class="fas fa-th-large"></i>
+            <span>Каталог</span>
+        </a>
+        <a href="#" class="nav-item" data-modal="cartModal">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Корзина</span>
+            <span class="badge cart-badge">0</span>
+        </a>
+        <div class="nav-item" data-modal="authModal">
+            <i class="fas fa-user"></i>
+            <span>Войти</span>
+        </div>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Дополнительный JavaScript для каталога
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация каталога
+            initCatalog();
+            
+            // Инициализация мобильных фильтров
+            initMobileFilters();
+            
+            // Инициализация слайдера цены
+            initPriceSlider();
+        });
+
+        let allProducts = [];
+
+        function initCatalog() {
+            // Загружаем расширенные данные товаров
+            loadExtendedProducts();
+            updateProductsCount();
+        }
+
+        function loadExtendedProducts() {
+            // Расширяем данные товаров дополнительными характеристиками
+            shopData.products.forEach(product => {
+                // Добавляем дополнительные характеристики для фильтрации
+                product.ram = getRandomRam();
+                product.storage = getRandomStorage();
+                product.battery = getRandomBattery();
+                product.releaseYear = 2023 + Math.floor(Math.random() * 2);
+                product.isNew = product.releaseYear === 2024;
+            });
+            
+            allProducts = [...shopData.products];
+            renderProducts(allProducts);
+        }
+
+        function getRandomRam() {
+            const rams = [4, 6, 8, 12, 16];
+            return rams[Math.floor(Math.random() * rams.length)];
+        }
+
+        function getRandomStorage() {
+            const storages = [64, 128, 256, 512, 1024];
+            return storages[Math.floor(Math.random() * storages.length)];
+        }
+
+        function getRandomBattery() {
+            const batteries = [3800, 4200, 4500, 5000, 5500];
+            return batteries[Math.floor(Math.random() * batteries.length)];
+        }
+
+        function initMobileFilters() {
+            // Копируем фильтры из десктопной версии в мобильную
+            const desktopFilters = document.querySelector('.filter-sidebar').innerHTML;
+            document.querySelector('.mobile-filters-content').innerHTML = desktopFilters;
+            
+            // Инициализируем обработчики для мобильных фильтров
+            document.querySelectorAll('.mobile-filters-content .filter-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    
+                    // Синхронизируем с десктопными фильтрами
+                    const filterType = this.getAttribute('data-filter');
+                    const filterValue = this.getAttribute('data-value');
+                    
+                    const desktopItem = document.querySelector(`.filter-sidebar .filter-item[data-filter="${filterType}"][data-value="${filterValue}"]`);
+                    if (desktopItem) {
+                        desktopItem.classList.toggle('active');
+                    }
+                    
+                    applyFilters();
+                });
+            });
+        }
+
+        function toggleMobileFilters() {
+            const filtersPanel = document.getElementById('mobileFilters');
+            filtersPanel.classList.toggle('active');
+            
+            if (filtersPanel.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+                applyFilters();
+            }
+        }
+
+        function initPriceSlider() {
+            const priceMin = document.getElementById('priceMin');
+            const priceMax = document.getElementById('priceMax');
+            const minPriceSpan = document.getElementById('minPrice');
+            const maxPriceSpan = document.getElementById('maxPrice');
+            
+            function updatePriceDisplay() {
+                const minVal = parseInt(priceMin.value);
+                const maxVal = parseInt(priceMax.value);
+                
+                minPriceSpan.textContent = formatPrice(minVal);
+                maxPriceSpan.textContent = formatPrice(maxVal);
+                
+                applyFilters();
+            }
+            
+            priceMin.addEventListener('input', updatePriceDisplay);
+            priceMax.addEventListener('input', updatePriceDisplay);
+        }
+
+        function applyFilters() {
+            const activeFilters = {
+                categories: [],
+                brands: [],
+                prices: [],
+                ram: [],
+                storage: [],
+                battery: []
+            };
+            
+            // Собираем активные фильтры из десктопной версии
+            document.querySelectorAll('.filter-sidebar .filter-item.active').forEach(item => {
+                const filterType = item.getAttribute('data-filter');
+                const filterValue = item.getAttribute('data-value');
+                
+                if (filterType && filterValue && activeFilters[filterType]) {
+                    activeFilters[filterType].push(filterValue);
+                }
+            });
+            
+            // Собираем активные фильтры из мобильной версии
+            document.querySelectorAll('.mobile-filters-content .filter-item.active').forEach(item => {
+                const filterType = item.getAttribute('data-filter');
+                const filterValue = item.getAttribute('data-value');
+                
+                if (filterType && filterValue && activeFilters[filterType]) {
+                    if (!activeFilters[filterType].includes(filterValue)) {
+                        activeFilters[filterType].push(filterValue);
+                    }
+                }
+            });
+            
+            // Получаем диапазон цен
+            const minPrice = parseInt(document.getElementById('priceMin')?.value || 0);
+            const maxPrice = parseInt(document.getElementById('priceMax')?.value || 200000);
+            
+            // Фильтруем товары
+            let filteredProducts = allProducts;
+            
+            if (activeFilters.categories.length > 0) {
+                filteredProducts = filteredProducts.filter(product => 
+                    activeFilters.categories.includes(product.category)
+                );
+            }
+            
+            if (activeFilters.brands.length > 0) {
+                filteredProducts = filteredProducts.filter(product => 
+                    activeFilters.brands.includes(product.brand)
+                );
+            }
+            
+            // Фильтр по цене
+            filteredProducts = filteredProducts.filter(product => 
+                product.price >= minPrice && product.price <= maxPrice
+            );
+            
+            // Фильтр по RAM
+            if (activeFilters.ram.length > 0) {
+                filteredProducts = filteredProducts.filter(product => 
+                    activeFilters.ram.includes(product.ram.toString())
+                );
+            }
+            
+            // Фильтр по памяти
+            if (activeFilters.storage.length > 0) {
+                filteredProducts = filteredProducts.filter(product => 
+                    activeFilters.storage.includes(product.storage.toString())
+                );
+            }
+            
+            // Фильтр по батарее
+            if (activeFilters.battery.length > 0) {
+                filteredProducts = filteredProducts.filter(product => {
+                    return activeFilters.battery.some(batteryRange => {
+                        if (batteryRange === '4000') {
+                            return product.battery <= 4000;
+                        } else if (batteryRange === '5000') {
+                            return product.battery > 4000 && product.battery <= 5000;
+                        } else if (batteryRange === '6000') {
+                            return product.battery > 5000;
+                        }
+                        return true;
+                    });
+                });
+            }
+            
+            // Применяем сортировку
+            filteredProducts = sortFilteredProducts(filteredProducts);
+            
+            renderProducts(filteredProducts);
+            updateProductsCount(filteredProducts.length);
+        }
+
+        function sortFilteredProducts(products) {
+            const sortValue = document.getElementById('sortSelect').value;
+            
+            switch(sortValue) {
+                case 'price_asc':
+                    return [...products].sort((a, b) => a.price - b.price);
+                case 'price_desc':
+                    return [...products].sort((a, b) => b.price - a.price);
+                case 'rating':
+                    return [...products].sort((a, b) => b.rating - a.rating);
+                case 'newest':
+                    return [...products].sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+                default:
+                    return products;
+            }
+        }
+
+        function sortProducts() {
+            applyFilters();
+        }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (searchTerm.trim() === '') {
+                renderProducts(allProducts);
+                updateProductsCount(allProducts.length);
+                return;
+            }
+            
+            const filteredProducts = allProducts.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm) ||
+                product.brand.toLowerCase().includes(searchTerm)
+            );
+            
+            renderProducts(filteredProducts);
+            updateProductsCount(filteredProducts.length);
+        }
+
+        function resetFilters() {
+            // Сброс десктопных фильтров
+            document.querySelectorAll('.filter-sidebar .filter-item.active').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Сброс мобильных фильтров
+            document.querySelectorAll('.mobile-filters-content .filter-item.active').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Сброс слайдера цены
+            document.getElementById('priceMin').value = 0;
+            document.getElementById('priceMax').value = 200000;
+            document.getElementById('minPrice').textContent = '0 ₽';
+            document.getElementById('maxPrice').textContent = '200 000 ₽';
+            
+            // Сброс сортировки
+            document.getElementById('sortSelect').value = 'default';
+            
+            // Показываем все товары
+            renderProducts(allProducts);
+            updateProductsCount(allProducts.length);
+            
+            // Закрываем мобильные фильтры
+            toggleMobileFilters();
+        }
+
+        function updateProductsCount(count) {
+            const countElement = document.getElementById('productsCount');
+            if (countElement) {
+                countElement.textContent = count || allProducts.length;
+            }
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('ru-RU', {
+                style: 'currency',
+                currency: 'RUB',
+                minimumFractionDigits: 0
+            }).format(price);
+        }
+    </script>
+    
+    <style>
+        /* Стили для каталога */
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            font-size: var(--font-size-sm);
+            color: var(--text-light);
+            padding: var(--spacing-md) 0;
+        }
+        
+        .breadcrumbs a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumbs a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumbs span {
+            color: var(--text);
+            font-weight: 500;
+        }
+        
+        .catalog-header {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .catalog-container {
+            display: block;
+        }
+        
+        @media (min-width: 1200px) {
+            .catalog-container {
+                display: grid;
+                grid-template-columns: 300px 1fr;
+                gap: var(--spacing-xl);
+            }
+        }
+        
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .btn-text {
+            background: none;
+            border: none;
+            color: var(--primary);
+            padding: 0;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .btn-text:hover {
+            text-decoration: underline;
+        }
+        
+        .price-range {
+            padding: var(--spacing-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+        }
+        
+        .price-slider {
+            width: 100%;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: var(--shadow);
+        }
+        
+        .catalog-controls {
+            background: var(--bg-card);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .catalog-info {
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .catalog-sort {
+            width: 200px;
+        }
+        
+        .catalog-sort select {
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 10px 16px;
+            font-size: var(--font-size-sm);
+            background: white;
+            cursor: pointer;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .pagination-list {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-xs);
+        }
+        
+        .pagination-item {
+            display: flex;
+        }
+        
+        .pagination-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            color: var(--text);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .pagination-item.active .pagination-link {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .pagination-item.disabled .pagination-link {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .mobile-filters {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            bottom: 0;
+            width: 100%;
+            background: var(--bg-card);
+            z-index: 1002;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mobile-filters.active {
+            right: 0;
+        }
+        
+        .mobile-filters-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-filters-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--spacing-lg);
+        }
+        
+        .mobile-filters-footer {
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: var(--spacing-md);
+        }
+        
+        .catalog-info-card {
+            border-left: 4px solid var(--primary);
+        }
+        
+        .feature-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--border-light);
+            border-radius: 20px;
+            font-size: var(--font-size-sm);
+            margin-right: var(--spacing-xs);
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-light);
+        }
+        
+        .mx-2 {
+            margin-left: var(--spacing-sm);
+            margin-right: var(--spacing-sm);
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .product-card {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* Стили для дополнительных характеристик */
+        .product-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: var(--font-size-sm);
+            color: var(--text-light);
+        }
+        
+        .spec-item i {
+            color: var(--primary);
+            width: 16px;
+        }
+    </style>
+    
+    <script>
+        // Обновляем функцию рендеринга товаров для каталога
+        const originalRenderProducts = window.renderProducts;
+        
+        window.renderProducts = function(products) {
+            const container = document.getElementById('productsContainer');
+            if (!container) return;
+            
+            container.innerHTML = products.map(product => `
+                <div class="product-card" data-category="${product.category}" data-brand="${product.brand}">
+                    ${product.badge ? `<div class="product-badge ${product.badge}">${product.badge === 'new' ? 'Новинка' : product.badge === 'sale' ? 'Распродажа' : 'Хит'}</div>` : ''}
+                    ${product.isNew ? `<div class="product-badge new" style="left: auto; right: var(--spacing-md);">2024</div>` : ''}
+                    
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">${getCategoryName(product.category)}</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-microchip"></i>
+                                <span>${product.ram} ГБ RAM</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-hdd"></i>
+                                <span>${product.storage} ГБ</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-battery-full"></i>
+                                <span>${product.battery} мАч</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>${product.releaseYear} г.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="product-rating">
+                            ${getRatingStars(product.rating)}
+                            <span class="text-muted">(${product.rating})</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">${formatPrice(product.price)}</span>
+                            ${product.oldPrice ? `<span class="old-price">${formatPrice(product.oldPrice)}</span>` : ''}
+                        </div>
+                        
+                        <div class="product-features mb-4">
+                            ${product.features.map(feature => `<span class="feature-tag">${feature}</span>`).join('')}
+                        </div>
+                        
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full" onclick="addToCart('${product.id}')">
+                                <i class="fas fa-shopping-cart"></i>
+                                В корзину
+                            </button>
+                            <button class="btn btn-outline btn-icon" onclick="showProductDetail('${product.id}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-outline btn-icon" onclick="toggleFavorite('${product.id}')">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        };
+        
+        function toggleFavorite(productId) {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const index = favorites.indexOf(productId);
+            
+            if (index === -1) {
+                favorites.push(productId);
+                showNotification('Добавлено в избранное', 'success');
+            } else {
+                favorites.splice(index, 1);
+                showNotification('Удалено из избранного', 'info');
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+        
+        function getCategoryName(categoryId) {
+            const category = shopData.categories.find(c => c.id === categoryId);
+            return category ? category.name : categoryId;
+        }
+        
+        function getRatingStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameStore - Магазин видеоигр</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">🎮 GameStore</h1>
+            <p class="subtitle">Лучшие игры для всех платформ</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="connection-error" class="error-banner hidden">
+            ❌ Ошибка подключения к серверу. Пожалуйста, проверьте соединение.
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="search" placeholder="🔍 Поиск игр..." class="search-input">
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Жанр:</label>
+                    <div id="genre-filters" class="checkbox-group">
+                        <!-- Чекбоксы жанров будут добавлены динамически -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Платформа:</label>
+                    <div id="platform-filters" class="checkbox-group">
+                        <!-- Чекбоксы платформ будут добавлены динамически -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Сортировка:</label>
+                    <select id="sort-select" class="sort-select">
+                        <option value="">По умолчанию</option>
+                        <option value="price:asc">Цена: по возрастанию</option>
+                        <option value="price:desc">Цена: по убыванию</option>
+                        <option value="rating:desc">Рейтинг: высокий</option>
+                        <option value="rating:asc">Рейтинг: низкий</option>
+                        <option value="title:asc">Название: А-Я</option>
+                        <option value="title:desc">Название: Я-А</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="reset-filters" class="btn-reset">Сбросить фильтры</button>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Загрузка игр...</p>
+        </div>
+
+        <div id="no-results" class="no-results hidden">
+            <p>😔 Игры не найдены</p>
+            <p class="hint">Попробуйте изменить параметры поиска или фильтры</p>
+        </div>
+
+        <div id="games-grid" class="games-grid">
+            <!-- Карточки игр будут добавлены динамически -->
+        </div>
+    </main>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body">
+                <!-- Детали игры будут добавлены динамически -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 GameStore. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
